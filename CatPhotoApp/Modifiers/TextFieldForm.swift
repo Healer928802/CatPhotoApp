@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct TextFieldForm: View {
+    @ObservedObject var viewModel: CatBreedViewModel
     @State private var breed: String = ""
     
     var body: some View {
-        TextField("Enter breed name", text: $breed)
+        TextField("Enter breed name", text: $viewModel.textQuery)
             .foregroundStyle(.text)
             .padding()
             .overlay(
@@ -20,8 +21,4 @@ struct TextFieldForm: View {
             )
             .padding()
     }
-}
-
-#Preview {
-    TextFieldForm()
 }

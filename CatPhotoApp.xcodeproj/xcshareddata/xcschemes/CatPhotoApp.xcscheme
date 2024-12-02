@@ -77,7 +77,12 @@
       <EnvironmentVariables>
          <EnvironmentVariable
             key = "CG_NUMERICS_SHOW_BACKTRACE"
-            value = "true"
+            value = "YES"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+         <EnvironmentVariable
+            key = "IDEPreferLogStreaming"
+            value = "YES"
             isEnabled = "YES">
          </EnvironmentVariable>
       </EnvironmentVariables>

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CatBreedView: View {
-    @ObservedObject private var viewModel = CatBreedViewModel(apiClient: APIClient())
+    @StateObject private var viewModel = CatBreedViewModel(apiClient: APIClient())
     private let columns = [
         GridItem(),
         GridItem(),
@@ -17,12 +17,10 @@ struct CatBreedView: View {
     
     var body: some View {
         ScrollView {
-            TextFieldForm()
+            TextFieldForm(viewModel: viewModel)
             LazyVGrid(columns: columns, spacing: 20) {
-                ForEach($viewModel.catBreeds) { $item in
-                    VStack {
-                        ImageView(imageStr: String(format: APIConstants.imageURL, item.referenceImageId))
-                    }
+                ForEach(viewModel.searchResult) { item in
+                    ImageView(imageStr: String(format: APIConstants.imageURL, item.referenceImageId))
                 }
             }
         }
