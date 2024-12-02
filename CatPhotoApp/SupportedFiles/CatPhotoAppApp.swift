@@ -9,9 +9,21 @@ import SwiftUI
 
 @main
 struct CatPhotoAppApp: App {
+    @ObservedObject var router = Router()
+    
     var body: some Scene {
         WindowGroup {
-            CatBreedView()
+            NavigationStack(path: $router.navPath) {
+                SplashScreen()
+                    .navigationDestination(for: Router.Destination.self) { destination in
+                        switch destination {
+                        case .breeds:
+                            CatBreedView()
+                        case .breedDetails(let details):
+                            BreedDetailsView(breedDetais: details)
+                        }
+                    }
+            }
         }
     }
 }
