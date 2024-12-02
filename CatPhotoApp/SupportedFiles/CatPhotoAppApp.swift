@@ -24,6 +24,7 @@ struct CatPhotoAppApp: App {
                         }
                     }
             }
+            .environmentObject(router)
         }
     }
 }

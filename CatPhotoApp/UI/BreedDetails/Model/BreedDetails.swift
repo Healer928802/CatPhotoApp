@@ -13,4 +13,5 @@ struct BreedDetails: Codable, Hashable {
     var description: String
     var origin: String
     var temperament: String
+    var image: String
 }

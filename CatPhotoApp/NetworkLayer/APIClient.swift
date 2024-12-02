@@ -14,9 +14,6 @@ protocol APIClientProtocol {
 actor APIClient: APIClientProtocol {
     func asyncRequest<T: Decodable>(router: APIRouter, response: T.Type) async throws -> T {
         do {
-            AF.request(router).response { response in
-                debugPrint(response)
-            }
             return try await AF.request(router).serializingDecodable(T.self).value
         } catch {
             throw error

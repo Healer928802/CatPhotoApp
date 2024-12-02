@@ -10,6 +10,8 @@ import SDWebImageSwiftUI
 
 struct ImageView: View {
     var imageStr: String = ""
+    var width: CGFloat = (UIScreen.main.bounds.size.width / 3) - 5
+    var height: CGFloat = 150
     
     var body: some View {
         WebImage(url: URL(string: imageStr)) { image in
@@ -21,7 +23,7 @@ struct ImageView: View {
         .indicator(.activity(style: .circular))
         .scaledToFill()
         .transition(.fade)
-        .frame(width: (UIScreen.main.bounds.size.width / 3) - 5, height: 150, alignment: .center)
+        .frame(width: width, height: height, alignment: .center)
         .clipShape(.rect(cornerRadius: 10.0))
     }
 }

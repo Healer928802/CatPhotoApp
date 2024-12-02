@@ -9,6 +9,7 @@ import Foundation
 
 final class CatBreedViewModel: ObservableObject {
     @Published var catBreeds: [BreedsResponse] = []
+    private var cashedResult: [BreedsResponse]?
     @Published var textQuery = ""
     
     let apiClient: APIClientProtocol
@@ -18,9 +19,15 @@ final class CatBreedViewModel: ObservableObject {
     }
     
     func retrieveCatBreeds() {
+        if let cashedResult = cashedResult {
+            catBreeds = cashedResult
+            return
+        }
+        
         Task {
             do {
                 let result = try await apiClient.asyncRequest(router: APIRouter.breedImages(limit: 10), response: [BreedsResponse].self)
+                cashedResult = result
                 
                 await MainActor.run {
                     catBreeds = result
